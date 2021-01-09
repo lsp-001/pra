@@ -1,0 +1,156 @@
+<!--
+ * @Description: CSS第二天学习,复合选择器，伪类选择器，显示模式及其转换，背景
+ * @version: 1.0
+ * @Author: 菅圣楠
+ * @Date: 2021-01-07 13:48:01
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-01-07 16:59:09
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 常用复合选择器：后代选择器（重要），子选择器（重要），并集选择器(重要)，伪类选择器 */
+
+        /* 后代选择器：父 子，空格隔开，可以是儿子也可以是孙子 */
+        ol li {
+            color: burlywood;
+        }
+
+        ul li a {
+            color: red;
+        }
+
+        /* 子选择器：选的是亲儿子，最近一级的儿子，父>子，大于号分割 */
+        .nav li {
+            color: aqua;
+        }
+
+        /* 并集选择器：多组标签定义相同样式，通常用于集体声明，各选择器通过逗号分割，语法规范如下 */
+        div,
+        p {
+            color: blue;
+        }
+
+        /* 链接伪类选择器： :link未被访问 :visited已经访问 :hover鼠标在上边 :active鼠标按下未弹起，书写顺序如下，口诀love hate*/
+        #aa:link {
+            text-decoration: none;
+        }
+
+        #aa:visited {
+            text-decoration: none;
+            color: black;
+        }
+
+        #aa:hover {
+            text-decoration: none;
+            color: orange;
+        }
+
+        #aa:active {
+            color: blue;
+        }
+
+        /* :focus选择器：光标选择器，一般情况<input>类表单元素才能获取，使用:input:focus */
+        input:focus {
+            background-color: rgb(96, 212, 96);
+        }
+
+        /* 元素显示模式：块元素，行内元素 */
+        /* 块元素：h1-h6 p div ul ol li等
+            特点：独占一行，高度宽度，内外边距可以设置
+            宽度默认是父级宽度的100%
+            注意：文字类块元素（h,p）内不能有其他块元素
+         */
+
+        .block {
+            background-color: pink;
+        }
+
+        /* 行内（内联）元素：常见的有：a,strong,em,del,ins,span等
+        特点：一行显示多个,不能直接设置高度和宽度，宽度默认是内容的宽度，行内元素只能容纳文本或其他行内元素
+        注意：特殊情况链接a里面可以放块状元素，但是给a转换一下块状模式最安全
+         */
+
+        /* 行内块元素：img,input,td 同时具有块元素和行内元素的特点
+        特点：在同一行，但是中间有缝隙，默认宽度是本身内容宽度，高度宽度内外边距等属性可以直接设置
+         */
+         img,input,td {
+            width: 20px;
+         }
+
+        /*显示模式转换：特殊情况下需要转换，比如想要增加链接的触发范围  */
+
+        #xiong {
+            display: block;
+            height: 100px;
+            line-height: 100px;
+            /* 垂直居中：行高=高 */
+            width: 100px;
+            border-radius: 100px;
+            background-color: yellow;
+            text-align: center;
+            /* margin: auto; */
+        }
+
+        /* 背景颜色：background-color默认值是透明（transparent） */
+        /* 背景图片：background-image: url(url) 实际开发中常见于logo或者一些装饰性的小图片或者超大的背景图片，优点是便于控制位置 */
+        /* 背景平铺：background-repeat|no-repeat|repeat-x|repeat-y */
+        /* 背景位置：background-position: x y;
+            百分数|由浮点数和单位标识符组成的长度值
+            top|center|bottom|left|center|right方位名词
+            两个参数可以混合使用，但是第一个参数一定是x，第二个参数是y
+            例子如下，与顺序无关，如果只指定了一个方位名词则第二个默认居中
+         */
+         /* 背景固定（附着）：background-attachment: scroll|fixed  设置是否固定或者随着页面的其余部分滚动 */
+        /*复合属性：没有固定要求，一般约定顺序为：background: color url repeat attachment position */
+        /* 背景颜色半透明：background: rgba(0,0,0,0,3) rgb值加透明度值0-1，小数值的0可以省略 */
+        
+        /* div {
+            background-position: top left;
+            background-position: 1px 1px;
+            background-position: center 20px;
+            background-attachment: fixed;
+            background: rgba(0, 0, 0, .3);
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- emmet语法，>,+,{}, . ,#,div.demo$*5 ,*-->
+    <!-- 快速格式化：shift+alt+F -->
+    <ul>
+        <li>ul</li>
+        <li><a href="#">ul的孙子</a></li>
+    </ul>
+    <ol>
+        <li>ol</li>
+    </ol>
+
+    <ul class="nav">
+        <li><a href="#">亲儿子里的链接</a></li>
+        <li>亲儿子</li>
+        <li>亲儿子</li>
+    </ul>
+
+    <div>并集选择器1</div>
+    <p>并集选择器2</p>
+
+    <a href="#" id="aa">我的博客</a>
+    <br>
+    <input type="text">
+    <input type="text">
+    <input type="text">
+
+    <div class="block">独占一行</div>瑟瑟发抖
+    <span>1</span><span>2</span>
+    <img src="../favicon.ico" alt="">
+    <a href="8-Large-breasts.html" id="xiong" target="_blank">大胸</a>
+</body>
+
+</html>
